@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/iodar/photo-import-tool.svg?branch=master)](https://travis-ci.org/iodar/photo-import-tool)
 # photo-import-tool
 
 Werkzeug zum Importieren von Fotos. Features:
