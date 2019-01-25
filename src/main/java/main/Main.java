@@ -127,8 +127,8 @@ public class Main {
 	}
 	
 	private static void testMetadata() throws ImageProcessingException, IOException {
-		final File TESTDATA_DIR = new File("src/test/data");
-		final File file = new File(TESTDATA_DIR.getAbsolutePath() + "/noPictureFile.txt");
+		final File testdataDir = new File("src/test/data");
+		final File file = new File(testdataDir.getAbsolutePath() + "/noPictureFile.txt");
 		ExifInfoUtility.getMetadata(file);
 	}
 }
