@@ -18,11 +18,14 @@ import java.util.stream.Stream;
 
 import com.drew.imaging.ImageProcessingException;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import model.ExifInfo;
 import model.ImageFile;
 import utility.ExifInfoUtility;
 import utility.LocalDateTimeUtility;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {
 
 	public static List<ImageFile> createImagesFromDirectory(File directory) throws IOException {
@@ -30,12 +33,10 @@ public class ImageFileManager {
 		List<ImageFile> images = new ArrayList<>();
 
 		Stream<Path> files = Files.walk(directory.toPath());
-		files.forEach((path) -> {
+		files.forEach(path -> {
 			final File file = path.toFile();
-			if (!file.isDirectory()) {
-				if (getExtension(file) == JPG) {
-					images.add(createImageFile(file));
-				}
+			if (!file.isDirectory() && getExtension(file) == JPG) {
+				images.add(createImageFile(file));
 			}
 		});
 
@@ -47,24 +48,21 @@ public class ImageFileManager {
 	public static ImageFile createImageFile(File file) {
 		// creates a single Image File from a file
 		try {
-			ImageFile imageFile = new ImageFile().setAbsoluteFilePath(file.getAbsolutePath())
-					.setFileName(file.getName()).setExifInfo(ImageFileManager.createExifInfo(file));
-			return imageFile;
+			return new ImageFile().setAbsoluteFilePath(file.getAbsolutePath()).setFileName(file.getName())
+					.setExifInfo(ImageFileManager.createExifInfo(file));
 		} catch (ImageProcessingException e) {
 			final String errorMessage = String.format("Reading Metadata of [%s] failed. File read from location [%s]",
 					file.getName(), file.getAbsolutePath());
 			System.err.println(errorMessage);
 			e.printStackTrace();
-			ImageFile imageFile = new ImageFile().setAbsoluteFilePath(file.getAbsolutePath())
-					.setFileName(file.getName()).setExifInfo(null);
-			return imageFile;
+			return new ImageFile().setAbsoluteFilePath(file.getAbsolutePath()).setFileName(file.getName())
+					.setExifInfo(null);
 		} catch (IOException e) {
 			final String errorMessage = String.format("IOError occurred while reading file [%s] from location [%s]",
 					file.getName(), file.getAbsolutePath());
 			System.err.println(errorMessage);
 			e.printStackTrace();
-			ImageFile imageFile = new ImageFile().setAbsoluteFilePath(null).setFileName(null).setExifInfo(null);
-			return imageFile;
+			return new ImageFile().setAbsoluteFilePath(null).setFileName(null).setExifInfo(null);
 		}
 	}
 
