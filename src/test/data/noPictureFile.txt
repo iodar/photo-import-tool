@@ -1,0 +1,1 @@
+Hier ist kein Bild drin, daher sollte das Einlesen der Exif Informationen fehlschlagen!
