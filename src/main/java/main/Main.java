@@ -28,8 +28,7 @@ public class Main {
 		try {
 			imageFiles = ImageFileManager.createImagesFromDirectory(rootDir);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		
 		if (!imageFiles.isEmpty()) {
