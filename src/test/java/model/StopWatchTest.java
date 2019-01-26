@@ -32,6 +32,11 @@ public class StopWatchTest {
 		stopWatch.getDifferenceMessage();
 	}
 	
+	@Test(expected = NotStartedException.class)
+	public void watchNotStartedAndStopIsCalled_shouldThrowNotStartedException() throws Exception {
+		stopWatch.stop();
+	}
+	
 	@Test
 	public void stopWatchRunningTwoSeconds_shouldReturnMessageThatIsNotEmptyOrNull() throws Exception {
 		stopWatch.start();

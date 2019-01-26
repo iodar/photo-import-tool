@@ -25,8 +25,12 @@ public class StopWatch {
 		this.startTime = LocalDateTime.now();
 	}
 	
-	public void stop() {	
-		this.endTime = LocalDateTime.now();
+	public void stop() throws NotStartedException {
+		if (!isStarted()) {
+			throw new NotStartedException("stopwatch not started yet");
+		} else {
+			this.endTime = LocalDateTime.now();
+		}
 	}
 	
 	public Boolean isStarted() {

@@ -34,8 +34,9 @@ public class Main {
 		if (!imageFiles.isEmpty()) {
 			logger.info(String.format("[%s] images imported", imageFiles.size()));
 		}
-		stopWatch.stop();
+		
 		try {
+			stopWatch.stop();
 			logger.info(stopWatch.getDifferenceMessage());
 		} catch (NotStartedException notStartedException) {
 			logger.error(notStartedException.getMessage());
