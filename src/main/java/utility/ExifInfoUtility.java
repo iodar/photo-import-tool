@@ -5,6 +5,7 @@ import static enums.MetadataDirectoryNames.EXIF_INFO;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
@@ -12,6 +13,10 @@ import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExifInfoUtility {
 
 	/**
@@ -24,7 +29,7 @@ public class ExifInfoUtility {
 	 * is not a image file
 	 * @throws IOException Thrown when reading the file went wrong
 	 */
-	public static HashMap<String, String> getMetadata(File file) throws ImageProcessingException, IOException {
+	public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException {
 		Metadata metadata = ImageMetadataReader.readMetadata(file);
 		HashMap<String, String> metadataHashMap = new HashMap<>();
 		
