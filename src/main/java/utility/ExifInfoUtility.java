@@ -44,8 +44,8 @@ public class ExifInfoUtility {
 				}
 			}
 		}
-		return metadataHashMap;
 		
+		return metadataHashMap;
 	}
 
 }
