@@ -16,6 +16,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.drew.imaging.ImageProcessingException;
 
 import lombok.AccessLevel;
@@ -27,7 +30,9 @@ import utility.LocalDateTimeUtility;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {
-
+	
+	private static Logger logger = LogManager.getLogger(ImageFileManager.class);
+	
 	public static List<ImageFile> createImagesFromDirectory(File directory) throws IOException {
 		// creates a list of ImageFiles from a single directory
 		List<ImageFile> images = new ArrayList<>();
@@ -53,15 +58,13 @@ public class ImageFileManager {
 		} catch (ImageProcessingException e) {
 			final String errorMessage = String.format("Reading Metadata of [%s] failed. File read from location [%s]",
 					file.getName(), file.getAbsolutePath());
-			System.err.println(errorMessage);
-			e.printStackTrace();
+			logger.error(errorMessage, e);
 			return new ImageFile().setAbsoluteFilePath(file.getAbsolutePath()).setFileName(file.getName())
 					.setExifInfo(null);
 		} catch (IOException e) {
 			final String errorMessage = String.format("IOError occurred while reading file [%s] from location [%s]",
 					file.getName(), file.getAbsolutePath());
-			System.err.println(errorMessage);
-			e.printStackTrace();
+			logger.error(errorMessage, e);
 			return new ImageFile().setAbsoluteFilePath(null).setFileName(null).setExifInfo(null);
 		}
 	}
