@@ -50,8 +50,7 @@ public class ExifInfoUtilityTest {
 				imageWithOutExifMetadata.getName());
 		ImageProcessingException actualException = null;
 		try {
-			@SuppressWarnings("unused")
-			Map<String, String> info =  ExifInfoUtility.getMetadata(imageWithOutExifMetadata);
+			ExifInfoUtility.getMetadata(imageWithOutExifMetadata);
 		} catch (ImageProcessingException imageProcessingException) {
 			actualException = imageProcessingException;
 		}
