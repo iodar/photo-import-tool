@@ -25,7 +25,7 @@ public class ExifInfoUtilityTest {
 	@Before
 	public void setUp() {
 		testfile = new File(TESTDATA_DIR.getAbsolutePath() + "/noPictureFile.txt");
-		imageWithOutExifMetadata = new File(TESTDATA_DIR.getAbsolutePath() + "/DSC_0104.jpg");
+		imageWithOutExifMetadata = new File("src/test/data/DSC_0104.jpg");
 	}
 
 	@Test
