@@ -2,15 +2,12 @@ package utility;
 
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +22,7 @@ public class ExifInfoUtilityTest {
 	@Before
 	public void setUp() {
 		testfile = new File(TESTDATA_DIR.getAbsolutePath() + "/noPictureFile.txt");
-		imageWithOutExifMetadata = new File(TESTDATA_DIR.getAbsolutePath() + "/DSC_0104.jpg");
+		imageWithOutExifMetadata = new File("src/test/data/DSC_0104.JPG");
 	}
 
 	@Test
