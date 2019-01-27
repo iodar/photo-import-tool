@@ -6,27 +6,38 @@ import static org.junit.Assert.assertThat;
 import java.io.File;
 import java.time.LocalDateTime;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import managers.ImageFileManager;
 import utility.LocalDateTimeUtility;
+import utility.LocalDateTimeUtility.UnsupportedDateStringException;
 
 public class ImageFileTest {
 
-	private static final String imageAbsolutePathName = "C:/test";
+	private static String imageAbsolutePathName;
 	private static final String imageFileName = "DSC_1009.JPG";
-	private final LocalDateTime dateTime = LocalDateTimeUtility.fromString("2019-01-02 16:55:11",
-			"uuuu-MM-dd HH:mm:ss");
-	private final ExifInfo exifInfo = new ExifInfo().setMake("Nikon").setModel("D5300").setDateTime(dateTime);
+	private LocalDateTime dateTime;
 
-	private final ImageFile imageWithoutExifInfo = new ImageFile().setFileName(imageFileName)
-			.setAbsoluteFilePath(imageAbsolutePathName);
+	private ExifInfo exifInfo;
 
-	private final ImageFile imageFile = new ImageFile().setFileName(imageFileName)
-			.setAbsoluteFilePath(imageAbsolutePathName).setExifInfo(exifInfo);
+	private ImageFile imageWithoutExifInfo;
 
-	private final ImageFile picture = ImageFileManager.createImageFile(new File("src/test/data/DSC_0001.JPG"));
-	private final ImageFile picture2 = ImageFileManager.createImageFile(new File("src/test/data/DSC_0010.JPG"));
+	private ImageFile imageFile;
+	private ImageFile picture;
+	private ImageFile picture2;
+
+	@Before
+	public void setUpTestdata() throws UnsupportedDateStringException {
+		imageAbsolutePathName = "C:/test";
+		dateTime = LocalDateTimeUtility.fromString("2019-01-02 16:55:11", "uuuu-MM-dd HH:mm:ss");
+		exifInfo = new ExifInfo().setMake("Nikon").setModel("D5300").setDateTime(dateTime);
+		imageWithoutExifInfo = new ImageFile().setFileName(imageFileName).setAbsoluteFilePath(imageAbsolutePathName);
+		imageFile = new ImageFile().setFileName(imageFileName).setAbsoluteFilePath(imageAbsolutePathName)
+				.setExifInfo(exifInfo);
+		picture = ImageFileManager.createImageFile(new File("src/test/data/DSC_0001.JPG"));
+		picture2 = ImageFileManager.createImageFile(new File("src/test/data/DSC_0010.JPG"));
+	}
 
 	@Test
 	public void objectWithoutExifCallingToString_shouldReturnOutputWithoutExifInfo() throws Exception {
@@ -52,4 +63,5 @@ public class ImageFileTest {
 	public void comparingNotEqualObejcts_shouldReturnFalseWhenCallingCompareTo() throws Exception {
 		assertThat(picture.compareTo(picture2), equalTo(false));
 	}
+	
 }

@@ -27,6 +27,7 @@ import model.ExifInfo;
 import model.ImageFile;
 import utility.ExifInfoUtility;
 import utility.LocalDateTimeUtility;
+import utility.LocalDateTimeUtility.UnsupportedDateStringException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {
@@ -79,10 +80,13 @@ public class ImageFileManager {
 					file.getName(), file.getAbsolutePath());
 			logger.error(errorMessage, e);
 			return new ImageFile().setAbsoluteFilePath(null).setFileName(null).setExifInfo(null);
+		} catch (UnsupportedDateStringException unsupportedDateStringException) {
+			logger.error(unsupportedDateStringException.getMessage());
+			return new ImageFile().setAbsoluteFilePath(null).setFileName(null).setExifInfo(null);
 		}
 	}
 
-	public static ExifInfo createExifInfo(File file) throws ImageProcessingException, IOException {
+	public static ExifInfo createExifInfo(File file) throws ImageProcessingException, IOException, UnsupportedDateStringException {
 		Map<String, String> fileMetadata = null;
 
 		try {
@@ -102,7 +106,7 @@ public class ImageFileManager {
 
 	}
 
-	private static LocalDateTime getLocalDateFromStringWithExifFormat(String dateTimeAsString) {
+	private static LocalDateTime getLocalDateFromStringWithExifFormat(String dateTimeAsString) throws UnsupportedDateStringException {
 		return LocalDateTimeUtility.fromString(dateTimeAsString, "yyyy:MM:dd HH:mm:ss");
 	}
 }

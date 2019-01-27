@@ -5,14 +5,14 @@ public enum FileExtension {
 	JPG(".jpg"),
 	NONE("");
 	
-	private String fileExtension;
+	private String extensionWithDotNotation;
 	
 	private FileExtension(String fileExtension) {
-		this.fileExtension = fileExtension;
+		this.extensionWithDotNotation = fileExtension;
 	}
 	
 	@Override
 	public String toString() {
-		return this.fileExtension;
+		return this.extensionWithDotNotation;
 	}
 }
