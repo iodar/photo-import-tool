@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-public class LocalDateUtilityTest {
+public class LocalDateTimeUtilityTest {
 	
 	@Test
 	public void fromStringMethod_shouldReturnLocalDateOfString() throws Exception {
@@ -35,4 +35,5 @@ public class LocalDateUtilityTest {
 		assertThat(LocalDateTimeUtility.fromLocalDate(dateTime, format),
 					Matchers.equalTo(dateAsString));
 	}
+	
 }
