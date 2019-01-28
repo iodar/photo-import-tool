@@ -16,7 +16,8 @@ public enum ExifIFD0Info {
 	private ExifIFD0Info(String exifInfoTagName) {
 		this.exifInfoTagName = exifInfoTagName;
 	}
-
+	
+	@Override
 	public String toString() {
 		return this.exifInfoTagName;
 	}
