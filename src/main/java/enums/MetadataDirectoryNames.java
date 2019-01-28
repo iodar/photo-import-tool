@@ -6,8 +6,8 @@ public enum MetadataDirectoryNames {
 	
 	private final String metadataDirectoryName;
 	
-	private MetadataDirectoryNames(String MetadataDirectoryName) {
-		this.metadataDirectoryName = MetadataDirectoryName;
+	private MetadataDirectoryNames(String metadataDirectoryName) {
+		this.metadataDirectoryName = metadataDirectoryName;
 	}
 	
 	@Override
