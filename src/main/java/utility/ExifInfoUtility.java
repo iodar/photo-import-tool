@@ -9,9 +9,7 @@ import java.util.Map;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
-import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
-import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifIFD0Directory;
 
 import lombok.AccessLevel;
@@ -30,24 +28,31 @@ public class ExifInfoUtility {
 	 *                                  of exif info is performed is not a image
 	 *                                  file
 	 * @throws IOException              Thrown when reading the file went wrong
+	 * @throws NoMetadataException 
 	 */
-	public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException {
+	public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException {
 		Metadata metadata = ImageMetadataReader.readMetadata(file);
 		HashMap<String, String> metadataHashMap = new HashMap<>();
 
 		if (!metadata.containsDirectoryOfType(ExifIFD0Directory.class)) {
-			throw new ImageProcessingException(
+			throw new NoMetadataException(
 					String.format("Metadata of file [%s] could not been read or was null", file.getName()));
 		} else {
-			for (Directory directory : metadata.getDirectories()) {
-				for (Tag tag : directory.getTags()) {
-					if (directory.getName().equals(EXIF_INFO.toString())) {
-						metadataHashMap.put(tag.getTagName(), tag.getDescription());
-					}
+			metadata.getDirectories().forEach(dir -> dir.getTags().forEach(tag -> {
+				if (dir.getName().equals(EXIF_INFO.toString())) {
+					metadataHashMap.put(tag.getTagName(), tag.getDescription());
 				}
-			}
+			}));
 		}
 
 		return metadataHashMap;
+	}
+	
+	public static class NoMetadataException extends Exception {
+		private static final long serialVersionUID = 6859687464263124718L;
+		
+		public NoMetadataException(String message) {
+			super(message);
+		}
 	}
 }

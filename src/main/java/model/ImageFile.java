@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 
+import enums.MetadataStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class ImageFile {
 	private String fileName;
 	private String absoluteFilePath;
 	private ExifInfo exifInfo;
+	private MetadataStatus metadataStatus;
 
 	
 	public String toString() {

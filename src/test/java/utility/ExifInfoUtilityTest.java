@@ -13,6 +13,8 @@ import org.junit.Test;
 
 import com.drew.imaging.ImageProcessingException;
 
+import utility.ExifInfoUtility.NoMetadataException;
+
 public class ExifInfoUtilityTest {
 
 	private final File TESTDATA_DIR = new File("src/test/data");
@@ -33,6 +35,8 @@ public class ExifInfoUtilityTest {
 			ExifInfoUtility.getMetadata(testfile);
 		} catch (ImageProcessingException imageProcessingException) {
 			actualException = imageProcessingException;
+		} catch (NoMetadataException e) {
+			
 		}
 		
 		assertThat(actualException, is(notNullValue()));
@@ -43,17 +47,18 @@ public class ExifInfoUtilityTest {
 
 	@Test
 	public void readingExifOfJpgWithOutMetadata_shouldThrowNewImageProcessingException() throws Exception {
+		NoMetadataException actualException = null;
+
 		final String expectedExceptionMessage = String.format("Metadata of file [%s] could not been read or was null",
 				imageWithOutExifMetadata.getName());
-		ImageProcessingException actualException = null;
+		
 		try {
 			ExifInfoUtility.getMetadata(imageWithOutExifMetadata);
-		} catch (ImageProcessingException imageProcessingException) {
-			actualException = imageProcessingException;
+		} catch (NoMetadataException noMetadataException) {
+			actualException = noMetadataException;
 		}
 		
-		assertThat(actualException, is(notNullValue()));
-		assertThat(actualException, is(instanceOf(ImageProcessingException.class)));
+		assertThat(actualException, is(instanceOf(NoMetadataException.class)));
 		assertThat(actualException.getMessage(), is(expectedExceptionMessage));
 	}
 

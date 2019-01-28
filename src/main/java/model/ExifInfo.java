@@ -2,7 +2,6 @@ package model;
 
 import java.time.LocalDateTime;
 
-import enums.MetadataStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +19,6 @@ public class ExifInfo {
 	private String make;
 	private String model;
 	private LocalDateTime dateTime;
-	private MetadataStatus metadataStatus;
 
 	public String toString() {
 		return String.format("Make: %s, Model: %s, dateTime: %s", getMake(), getModel(),
