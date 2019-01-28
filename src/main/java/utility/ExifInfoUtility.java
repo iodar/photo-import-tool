@@ -41,7 +41,7 @@ public class ExifInfoUtility {
 		} else {
 			for (Directory directory : metadata.getDirectories()) {
 				for (Tag tag : directory.getTags()) {
-					if (directory.getName() == EXIF_INFO.toString()) {
+					if (directory.getName().equals(EXIF_INFO.toString())) {
 						metadataHashMap.put(tag.getTagName(), tag.getDescription());
 					}
 				}

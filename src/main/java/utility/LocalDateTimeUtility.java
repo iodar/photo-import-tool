@@ -22,7 +22,7 @@ public class LocalDateTimeUtility {
 	 * @see DateTimeFormatter
 	 */
 	public static LocalDateTime fromString(String dateAsString, String format) throws UnsupportedDateStringException {
-		if (dateAsString == null || dateAsString == "") {
+		if (dateAsString == null || dateAsString.equals("")) {
 			throw new UnsupportedDateStringException("datestring can not be null or empty");
 		} else  {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
