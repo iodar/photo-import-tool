@@ -20,7 +20,7 @@ public class ImageFile {
 	private String absoluteFilePath;
 	private ExifInfo exifInfo;
 	private MetadataStatus metadataStatus;
-
+	private String metadataStatusDescription;
 	
 	public String toString() {
 		if (getExifInfo() == null) {
