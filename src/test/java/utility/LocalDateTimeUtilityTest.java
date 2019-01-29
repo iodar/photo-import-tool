@@ -13,11 +13,7 @@ import java.time.format.DateTimeFormatter;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
-import utility.LocalDateTimeUtility.UnsupportedDateStringException;
-
 public class LocalDateTimeUtilityTest {
-	
-	private final String expectedUnsupportedDateStringExceptionMessage = "datestring can not be null or empty";
 	
 	@Test
 	public void fromStringMethod_shouldReturnLocalDateOfString() throws Exception {

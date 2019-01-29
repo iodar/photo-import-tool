@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import managers.ImageFileManager;
 import utility.LocalDateTimeUtility;
-import utility.LocalDateTimeUtility.UnsupportedDateStringException;
 
 public class ImageFileTest {
 
@@ -28,7 +27,7 @@ public class ImageFileTest {
 	private ImageFile picture2;
 
 	@Before
-	public void setUpTestdata() throws UnsupportedDateStringException {
+	public void setUpTestdata() {
 		imageAbsolutePathName = "C:/test";
 		dateTime = LocalDateTimeUtility.fromString("2019-01-02 16:55:11", "uuuu-MM-dd HH:mm:ss");
 		exifInfo = new ExifInfo().setMake("Nikon").setModel("D5300").setDateTime(dateTime);

@@ -22,7 +22,6 @@ public class ImageFileManagerTest {
 
 	private File picture;
 	private File pictureFileWithoutExifInfo;
-	private File directoryWithPictures;
 	private File nonPictureFile;
 	private File unreadableFile;
 	
@@ -30,7 +29,6 @@ public class ImageFileManagerTest {
 	public void setUp() {
 		picture = new File("src/test/data/DSC_0001.JPG");
 		pictureFileWithoutExifInfo = new File("src/test/data/DSC_0104.JPG");
-		directoryWithPictures = new File("src/test/data/testdataWithDirsAndPics/");
 		nonPictureFile = new File("src/test/data/noPictureFile.txt");
 		
 		unreadableFile = new File("src/test/data/fileWithoutExtension");
@@ -49,6 +47,7 @@ public class ImageFileManagerTest {
 	
 	@Test
 	public void methodCreateListFromDirectory_shouldCreateListWithAllItems() throws Exception {
+		File directoryWithPictures = new File("src/test/data/testdataWithDirsAndPics/");
 		List<ImageFile> images = ImageFileManager.createImagesFromDirectory(directoryWithPictures);
 		
 		assertThat(images.size(), is(4));

@@ -44,13 +44,4 @@ public class LocalDateTimeUtility {
 		return dateTime.format(formatter);
 	}
 
-	@NoArgsConstructor(access = AccessLevel.PRIVATE)
-	public static class UnsupportedDateStringException extends Exception {
-		private static final long serialVersionUID = -4885950433923933456L;
-
-		public UnsupportedDateStringException(String message) {
-			super(message);
-		}
-	}
-
 }
