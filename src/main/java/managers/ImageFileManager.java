@@ -26,8 +26,8 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.ExifInfo;
 import model.ImageFile;
+import model.exceptions.NoMetadataException;
 import utility.ExifInfoUtility;
-import utility.ExifInfoUtility.NoMetadataException;
 import utility.LocalDateTimeUtility;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -45,6 +45,7 @@ public class ImageFileManager {
 		files.parallelStream().forEach(file -> {
 			if (!file.isDirectory() && getExtension(file) == JPG) {
 				images.add(createImageFile(file));
+				logger.info(String.format("Metadata of file [%s] successfully read", file.getName()));
 			}
 		});
 

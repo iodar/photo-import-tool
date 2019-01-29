@@ -3,7 +3,7 @@ package utility;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import com.drew.imaging.ImageProcessingException;
 
-import utility.ExifInfoUtility.NoMetadataException;
+import model.exceptions.NoMetadataException;
 
 public class ExifInfoUtilityTest {
 
@@ -61,5 +61,5 @@ public class ExifInfoUtilityTest {
 		assertThat(actualException, is(instanceOf(NoMetadataException.class)));
 		assertThat(actualException.getMessage(), is(expectedExceptionMessage));
 	}
-
+	
 }

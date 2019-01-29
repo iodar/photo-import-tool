@@ -7,13 +7,19 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.diffplug.common.base.Errors;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifIFD0Directory;
 
+import enums.MetadataDirectoryNames;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import model.exceptions.NoMetadataException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExifInfoUtility {
@@ -38,21 +44,18 @@ public class ExifInfoUtility {
 			throw new NoMetadataException(
 					String.format("Metadata of file [%s] could not been read or was null", file.getName()));
 		} else {
-			metadata.getDirectories().forEach(dir -> dir.getTags().forEach(tag -> {
-				if (dir.getName().equals(EXIF_INFO.toString())) {
-					metadataHashMap.put(tag.getTagName(), tag.getDescription());
+			metadata.getDirectories().forEach(dir -> dir.getTags().forEach(Errors.rethrow().wrap(tag -> {
+				if (dir.getName().equals(MetadataDirectoryNames.EXIF_INFO.toString())) {
+					if (StringUtils.isBlank(tag.getDescription())) {
+						throw new NoMetadataException(String.format("Metadata properties of file [%s] were empty", file.getName()));
+					} else {
+						metadataHashMap.put(tag.getTagName(), tag.getDescription());
+					}
 				}
-			}));
+			})));
 		}
 
 		return metadataHashMap;
 	}
-	
-	public static class NoMetadataException extends Exception {
-		private static final long serialVersionUID = 6859687464263124718L;
-		
-		public NoMetadataException(String message) {
-			super(message);
-		}
-	}
+
 }

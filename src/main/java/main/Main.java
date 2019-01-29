@@ -22,11 +22,11 @@ import model.StopWatch.NotStoppedException;
 public class Main {
 
 	private static Logger logger = LogManager.getLogger(Main.class);
-	private static File rootDir = new File("N:\\Fotos\\Unsortiert\\Bilder Bremen 2018-2019");
+	private static File rootDir = new File("N:\\Fotos\\Fotos Dario");
 
 	public static void main(String[] args) throws ImageProcessingException, IOException {
-//		dirtyTestApp();
-		testMetadataReader();
+		dirtyTestApp();
+//		testMetadataReader();
 	}
 
 	private static void dirtyTestApp() {
