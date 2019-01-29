@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum MetadataStatus {
 	
 	OK("Ok", "Metadaten sind vollständig"),
-	CORRUPT("Korrupt", "Metadaten sind korrupt und konnten nicht gelesen werden"),
+	NOT_READABLE("Nicht lesbar", "Datei konnte nicht gelesen werden oder Metadaten sind korrupt"),
 	NO_DATA("Keine Daten", "Element hat keine Metadaten");
 	
 	private String status;

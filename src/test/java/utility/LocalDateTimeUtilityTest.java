@@ -42,34 +42,34 @@ public class LocalDateTimeUtilityTest {
 					Matchers.equalTo(dateAsString));
 	}
 	
-	@Test
-	public void fromStringMethodWithNullValueForDateString_shouldThrowUnsupportedDateStringException() throws Exception {
-		UnsupportedDateStringException actualException = null;
-		
-		try {
-			LocalDateTimeUtility.fromString(null, "uuuu-MM-dd HH:mm:ss");
-		} catch (UnsupportedDateStringException unsupportedDateStringException) {
-			actualException = unsupportedDateStringException;
-		}
-		
-		assertThat(actualException, is(notNullValue()));
-		assertThat(actualException, is(instanceOf(UnsupportedDateStringException.class)));
-		assertThat(actualException.getMessage(), is(expectedUnsupportedDateStringExceptionMessage));
-	}
+//	@Test
+//	public void fromStringMethodWithNullValueForDateString_shouldThrowUnsupportedDateStringException() throws Exception {
+//		UnsupportedDateStringException actualException = null;
+//		
+//		try {
+//			LocalDateTimeUtility.fromString(null, "uuuu-MM-dd HH:mm:ss");
+//		} catch (UnsupportedDateStringException unsupportedDateStringException) {
+//			actualException = unsupportedDateStringException;
+//		}
+//		
+//		assertThat(actualException, is(notNullValue()));
+//		assertThat(actualException, is(instanceOf(UnsupportedDateStringException.class)));
+//		assertThat(actualException.getMessage(), is(expectedUnsupportedDateStringExceptionMessage));
+//	}
 	
-	@Test
-	public void fromStringMethodWithEmptyValueForDateString_shouldThrowUnsupportedDateStringException() throws Exception {
-		UnsupportedDateStringException actualException = null;
-		
-		try {
-			LocalDateTimeUtility.fromString("", "uuuu-MM-dd HH:mm:ss");
-		} catch (UnsupportedDateStringException unsupportedDateStringException) {
-			actualException = unsupportedDateStringException; 
-		}
-		
-		assertThat(actualException, is(notNullValue()));
-		assertThat(actualException, is(instanceOf(UnsupportedDateStringException.class)));
-		assertThat(actualException.getMessage(), is(expectedUnsupportedDateStringExceptionMessage));
-	}
+//	@Test
+//	public void fromStringMethodWithEmptyValueForDateString_shouldThrowUnsupportedDateStringException() throws Exception {
+//		UnsupportedDateStringException actualException = null;
+//		
+//		try {
+//			LocalDateTimeUtility.fromString("", "uuuu-MM-dd HH:mm:ss");
+//		} catch (UnsupportedDateStringException unsupportedDateStringException) {
+//			actualException = unsupportedDateStringException; 
+//		}
+//		
+//		assertThat(actualException, is(notNullValue()));
+//		assertThat(actualException, is(instanceOf(UnsupportedDateStringException.class)));
+//		assertThat(actualException.getMessage(), is(expectedUnsupportedDateStringExceptionMessage));
+//	}
 	
 }

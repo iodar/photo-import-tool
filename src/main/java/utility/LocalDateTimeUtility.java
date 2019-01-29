@@ -13,29 +13,27 @@ public class LocalDateTimeUtility {
 	 * Parses string representation of a date and time into
 	 * {@linkplain LocalDateTime} object.
 	 * 
-	 * @param dateAsString string representation of date and time to convert to {@link LocalDateTime}
-	 * @param format used to specify the format of the string representation provided
+	 * @param dateAsString string representation of date and time to convert to
+	 *                     {@link LocalDateTime}
+	 * @param format       used to specify the format of the string representation
+	 *                     provided
 	 * @return {@link LocalDateTime} object of the provided string
-	 * @throws UnsupportedDateStringException 
+	 * @throws UnsupportedDateStringException
 	 * 
 	 * @see LocalDateTime
 	 * @see DateTimeFormatter
 	 */
-	public static LocalDateTime fromString(String dateAsString, String format) throws UnsupportedDateStringException {
-		if (dateAsString == null || dateAsString.equals("")) {
-			throw new UnsupportedDateStringException("datestring can not be null or empty");
-		} else  {
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-			return LocalDateTime.parse(dateAsString, formatter);
-		}
+	public static LocalDateTime fromString(String dateAsString, String format) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+		return LocalDateTime.parse(dateAsString, formatter);
 	}
-	
+
 	/**
-	 * Formats {@linkplain LocalDateTime} into a string using the provided
-	 * format string. For format string see {@linkplain DateTimeFormatter}.
+	 * Formats {@linkplain LocalDateTime} into a string using the provided format
+	 * string. For format string see {@linkplain DateTimeFormatter}.
 	 * 
 	 * @param dateTime input to convert to string representation
-	 * @param format used to specify the string output 
+	 * @param format   used to specify the string output
 	 * @return string representation of the provided input
 	 * 
 	 * @see DateTimeFormatter
@@ -45,7 +43,7 @@ public class LocalDateTimeUtility {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
 		return dateTime.format(formatter);
 	}
-	
+
 	@NoArgsConstructor(access = AccessLevel.PRIVATE)
 	public static class UnsupportedDateStringException extends Exception {
 		private static final long serialVersionUID = -4885950433923933456L;

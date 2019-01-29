@@ -29,7 +29,6 @@ import model.ImageFile;
 import utility.ExifInfoUtility;
 import utility.ExifInfoUtility.NoMetadataException;
 import utility.LocalDateTimeUtility;
-import utility.LocalDateTimeUtility.UnsupportedDateStringException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {
@@ -72,41 +71,38 @@ public class ImageFileManager {
 		} catch (ImageProcessingException imageProcessingException) {
 			logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, imageProcessingException.getClass().getName(),
 					imageProcessingException.getMessage()));
-			
+
 			return new ImageFile().setFileName(file.getName()).setAbsoluteFilePath(file.getAbsolutePath())
-					.setMetadataStatus(MetadataStatus.NO_DATA).setExifInfo(null);
+					.setMetadataStatus(MetadataStatus.NO_DATA).setExifInfo(null)
+					.setMetadataStatusDescription(imageProcessingException.getMessage());
 		} catch (IOException ioException) {
-			logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, ioException.getClass().getName(), ioException.getMessage()));
-			
+			logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, ioException.getClass().getName(),
+					ioException.getMessage()));
+
 			return new ImageFile().setFileName(file.getName()).setAbsoluteFilePath(file.getAbsolutePath())
-					.setMetadataStatus(MetadataStatus.NO_DATA).setExifInfo(null);
-		} catch (UnsupportedDateStringException unsupportedDateStringException) {
-			logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, unsupportedDateStringException.getClass().getName(),
-					unsupportedDateStringException.getMessage()));
-			
+					.setMetadataStatus(MetadataStatus.NOT_READABLE).setExifInfo(null)
+					.setMetadataStatusDescription(ioException.getMessage());
+		} catch (NoMetadataException noMetadataException) {
+			logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, noMetadataException.getClass().getName(),
+					noMetadataException.getMessage()));
+
 			return new ImageFile().setFileName(file.getName()).setAbsoluteFilePath(file.getAbsolutePath())
-					.setMetadataStatus(MetadataStatus.NO_DATA).setExifInfo(null);
+					.setMetadataStatus(MetadataStatus.NO_DATA).setExifInfo(null)
+					.setMetadataStatusDescription(noMetadataException.getMessage());
 		}
 	}
 
-	public static ExifInfo createExifInfo(File file) throws ImageProcessingException, IOException, UnsupportedDateStringException {
+	private static ExifInfo createExifInfo(File file)
+			throws ImageProcessingException, IOException, NoMetadataException {
 		Map<String, String> fileMetadata = null;
 
-		try {
-			fileMetadata = ExifInfoUtility.getMetadata(file);
-			return new ExifInfo().setMake(fileMetadata.get(MAKE.toString()))
-					.setModel(fileMetadata.get(MODEL.toString())).setDateTime(ImageFileManager
-							.getLocalDateFromStringWithExifFormat(fileMetadata.get(DATE_TIME.toString())));
-		} catch (NoMetadataException metadataException) {
-			logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, metadataException.getClass().getName(),
-					metadataException.getMessage()));
-			return null;
-		}
-
+		fileMetadata = ExifInfoUtility.getMetadata(file);
+		return new ExifInfo().setMake(fileMetadata.get(MAKE.toString())).setModel(fileMetadata.get(MODEL.toString()))
+				.setDateTime(
+						ImageFileManager.getLocalDateFromStringWithExifFormat(fileMetadata.get(DATE_TIME.toString())));
 	}
 
-	private static LocalDateTime getLocalDateFromStringWithExifFormat(String dateTimeAsString)
-			throws UnsupportedDateStringException {
+	private static LocalDateTime getLocalDateFromStringWithExifFormat(String dateTimeAsString) {
 		return LocalDateTimeUtility.fromString(dateTimeAsString, "yyyy:MM:dd HH:mm:ss");
 	}
 }
