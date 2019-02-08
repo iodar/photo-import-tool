@@ -39,14 +39,14 @@ public class ImageFileTest {
 	}
 
 	@Test
-	public void objectWithoutExifCallingToString_shouldReturnOutputWithoutExifInfo() throws Exception {
+	public void objectWithoutExifCallingToString_shouldReturnOutputWithoutExifInfo() {
 		final String expectedToStringOutput = String.format("[%s] [Exif] N/A", imageFileName);
 
 		assertThat(imageWithoutExifInfo.toString(), equalTo(expectedToStringOutput));
 	}
 
 	@Test
-	public void objectWithExifCalligToString_shouldReturnOutputWithExifInfo() throws Exception {
+	public void objectWithExifCalligToString_shouldReturnOutputWithExifInfo() {
 		final String expectedToStringOutput = "[DSC_1009.JPG] [Exif] Make: Nikon,"
 				+ " Model: D5300, dateTime: 2019-01-02 16:55:11";
 
@@ -54,12 +54,12 @@ public class ImageFileTest {
 	}
 
 	@Test
-	public void comparingEqualObjects_shouldReturnTrueWhenCallingCompareTo() throws Exception {
+	public void comparingEqualObjects_shouldReturnTrueWhenCallingCompareTo() {
 		assertThat(picture.compareTo(picture), equalTo(true));
 	}
 
 	@Test
-	public void comparingNotEqualObejcts_shouldReturnFalseWhenCallingCompareTo() throws Exception {
+	public void comparingNotEqualObejcts_shouldReturnFalseWhenCallingCompareTo() {
 		assertThat(picture.compareTo(picture2), equalTo(false));
 	}
 	

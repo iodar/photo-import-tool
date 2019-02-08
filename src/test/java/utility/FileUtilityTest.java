@@ -16,17 +16,17 @@ public class FileUtilityTest {
 	private final File fileWithoutExtension = new File("src/test/data/fileWithoutExtension");
 	
 	@Test
-	public void methodGetExtensionCalledOnJpg_shouldReturnJpgEnum() throws Exception {
+	public void methodGetExtensionCalledOnJpg_shouldReturnJpgEnum() {
 		assertThat(FileUtility.getExtension(jpg), equalTo(JPG));
 	}
 	
 	@Test
-	public void methodGetExtensionCalledOnNonJpgFile_shouldReturnNoneEnum() throws Exception {
+	public void methodGetExtensionCalledOnNonJpgFile_shouldReturnNoneEnum() {
 		assertThat(FileUtility.getExtension(txt), equalTo(NONE));
 	}
 	
 	@Test
-	public void methodGetExtensionCalledOnFileWithoutExtension_shouldReturnNoneEnum() throws Exception {
+	public void methodGetExtensionCalledOnFileWithoutExtension_shouldReturnNoneEnum() {
 		assertThat(FileUtility.getExtension(fileWithoutExtension), equalTo(NONE));
 	}
 }

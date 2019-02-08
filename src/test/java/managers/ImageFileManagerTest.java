@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import enums.MetadataStatus;
@@ -75,8 +76,7 @@ public class ImageFileManagerTest {
 	}
 
 	@Test
-	public void createImageFileOfNonPictureFile_shouldReturnImageFileWithMetadataStatusNoDataAndImageProcessingDescription()
-			throws Exception {
+	public void createImageFileOfNonPictureFile_shouldReturnImageFileWithMetadataStatusNoDataAndImageProcessingDescription() {
 		final String expectedMetadataStatusDescription = "File format could not be determined";
 
 		ImageFile actualImageFile = ImageFileManager.createImageFile(nonPictureFile);
@@ -86,6 +86,7 @@ public class ImageFileManagerTest {
 		assertThat(actualImageFile.getMetadataStatusDescription(), is(expectedMetadataStatusDescription));
 	}
 
+	@Ignore
 	@Test
 	public void createImageFileOfFileThatCanNotBeRead_shouldReturnImageFileWithMetadataStatusNoDataAndDesciption()
 			throws Exception {

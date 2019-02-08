@@ -95,9 +95,8 @@ public class ImageFileManager {
 
 	private static ExifInfo createExifInfo(File file)
 			throws ImageProcessingException, IOException, NoMetadataException {
-		Map<String, String> fileMetadata = null;
 
-		fileMetadata = ExifInfoUtility.getMetadata(file);
+		Map<String, String> fileMetadata = ExifInfoUtility.getMetadata(file);
 		return new ExifInfo().setMake(fileMetadata.get(MAKE.toString())).setModel(fileMetadata.get(MODEL.toString()))
 				.setDateTime(
 						ImageFileManager.getLocalDateFromStringWithExifFormat(fileMetadata.get(DATE_TIME.toString())));
