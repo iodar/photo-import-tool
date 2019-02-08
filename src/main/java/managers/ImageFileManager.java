@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.apache.logging.log4j.LogManager;
@@ -53,14 +54,11 @@ public class ImageFileManager {
 	}
 
 	private static List<File> getFilesOfDirectory(File directory) throws IOException {
-		List<File> files = new ArrayList<>();
+		List<File> files;
 
-		Stream<Path> paths = Files.walk(directory.toPath());
-		paths.parallel().forEach(path -> {
-			final File file = path.toFile();
-			files.add(file);
-		});
-		paths.close();
+		try (Stream<Path> pathStream = Files.walk(directory.toPath())) {
+			files = pathStream.map(Path::toFile).collect(Collectors.toList());
+		}
 
 		return files;
 	}
