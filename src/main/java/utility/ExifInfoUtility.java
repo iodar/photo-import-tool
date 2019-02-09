@@ -1,22 +1,21 @@
 package utility;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.diffplug.common.base.Errors;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifIFD0Directory;
-
 import enums.MetadataDirectoryNames;
+import exceptions.UnsupportDateFormatException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.exceptions.NoMetadataException;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExifInfoUtility {
@@ -35,7 +34,7 @@ public class ExifInfoUtility {
      * @throws IOException              Thrown when reading the file went wrong
      * @throws NoMetadataException
      */
-    public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException {
+    public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException, UnsupportDateFormatException {
         Metadata metadata = ImageMetadataReader.readMetadata(file);
         HashMap<String, String> metadataHashMap = new HashMap<>();
 
@@ -47,7 +46,7 @@ public class ExifInfoUtility {
                 if (dir.getName().equals(MetadataDirectoryNames.EXIF_INFO.toString())) {
                     if (StringUtils.isBlank(tag.getDescription())) {
                         throw new NoMetadataException(String.format("Metadata properties of file [%s] were empty", file.getName()));
-                    } else if (tag.getDescription().matches(SUPPORTED_DATETIME_FORMAT)) {
+                    } else if (!tag.getDescription().matches(SUPPORTED_DATETIME_FORMAT)) {
                         throw new UnsupportDateFormatException("Supplied DateTime format is not supported");
                     } else {
                         metadataHashMap.put(tag.getTagName(), tag.getDescription());

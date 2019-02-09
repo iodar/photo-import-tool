@@ -1,16 +1,15 @@
 package model;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import managers.ImageFileManager;
+import org.junit.Before;
+import org.junit.Test;
+import utility.LocalDateTimeUtility;
 
 import java.io.File;
 import java.time.LocalDateTime;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import managers.ImageFileManager;
-import utility.LocalDateTimeUtility;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 public class ImageFileTest {
 

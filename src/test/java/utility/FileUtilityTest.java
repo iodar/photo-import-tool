@@ -1,13 +1,13 @@
 package utility;
 
+import org.junit.Test;
+
+import java.io.File;
+
 import static enums.FileExtension.JPG;
 import static enums.FileExtension.NONE;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-
-import java.io.File;
-
-import org.junit.Test;
 
 public class FileUtilityTest {
 

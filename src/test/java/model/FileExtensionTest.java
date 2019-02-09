@@ -1,12 +1,11 @@
 package model;
 
+import enums.FileExtension;
+import org.junit.Test;
+
 import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-
-import org.junit.Test;
-
-import enums.FileExtension;
 
 public class FileExtensionTest {
 	

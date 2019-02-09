@@ -1,24 +1,20 @@
 package main;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
-import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
-
 import managers.ImageFileManager;
 import model.ImageFile;
 import model.StopWatch;
 import model.StopWatch.NotStartedException;
 import model.StopWatch.NotStoppedException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 

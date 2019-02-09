@@ -1,10 +1,10 @@
 package utility;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LocalDateTimeUtility {

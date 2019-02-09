@@ -1,16 +1,12 @@
 package model;
 
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.*;
-
-import org.hamcrest.Matchers;
+import model.StopWatch.NotStartedException;
+import model.StopWatch.NotStoppedException;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.StopWatch.NotStartedException;
-import model.StopWatch.NotStoppedException;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 public class StopWatchTest {
 	

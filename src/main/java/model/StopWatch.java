@@ -1,13 +1,13 @@
 package model;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Getter
 @Setter
