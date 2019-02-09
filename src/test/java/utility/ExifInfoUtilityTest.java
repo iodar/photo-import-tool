@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.IOException;
 
+import exceptions.UnsupportDateFormatException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +29,7 @@ public class ExifInfoUtilityTest {
 	}
 
 	@Test
-	public void readingExifInfoOfNonPictureFile_shouldThrowException() throws ImageProcessingException, IOException {
+	public void readingExifInfoOfNonPictureFile_shouldThrowException() throws ImageProcessingException, IOException, UnsupportDateFormatException {
 		ImageProcessingException actualException = null;
 		
 		try {
