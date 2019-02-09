@@ -39,7 +39,7 @@ public class ImageFileManagerTest {
     }
 
     @Test
-    public void methodForCreatingImageFile_shouldReturnImageFileWithExifData() throws Exception {
+    public void methodForCreatingImageFile_shouldReturnImageFileWithExifData() {
         ImageFile image = ImageFileManager.createImageFile(picture);
 
         assertThat(image.getFileName(), equalTo("DSC_0001.JPG"));
@@ -64,7 +64,7 @@ public class ImageFileManagerTest {
     }
 
     @Test
-    public void createImageFileOfPictureWithoutExifInfo_shouldReturnImageFileMetadataStatusNoData() throws Exception {
+    public void createImageFileOfPictureWithoutExifInfo_shouldReturnImageFileMetadataStatusNoData() {
         final String metadataStatusDescriptionTemplate = "Metadata of file [%s] could not been read or was null";
 
         ImageFile actualImageFile = ImageFileManager.createImageFile(pictureFileWithoutExifInfo);
@@ -89,8 +89,7 @@ public class ImageFileManagerTest {
     // FIXME: this test needs to be fixed
     @Ignore
     @Test
-    public void createImageFileOfFileThatCanNotBeRead_shouldReturnImageFileWithMetadataStatusNoDataAndDesciption()
-            throws Exception {
+    public void createImageFileOfFileThatCanNotBeRead_shouldReturnImageFileWithMetadataStatusNoDataAndDesciption() {
         ImageFile actualImageFile = ImageFileManager.createImageFile(unreadableFile);
         System.out.println(actualImageFile.getMetadataStatusDescription());
 
