@@ -52,7 +52,7 @@ public class ImageFileManagerTest {
     }
 
     @Test
-    public void createImageFileFromEmptyFolder_shouldReturnEmptyList() throws Exception {
+    public void createImageFileFromFolderWithoutImages_shouldReturnEmptyList() throws Exception {
         List<ImageFile> images = ImageFileManager.createImagesFromDirectory(emptyFolder);
 
         assertThat(images.size(), equalTo(0));
