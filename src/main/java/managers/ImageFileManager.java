@@ -1,11 +1,17 @@
 package managers;
 
-import static enums.ExifIFD0Info.DATE_TIME;
-import static enums.ExifIFD0Info.MAKE;
-import static enums.ExifIFD0Info.MODEL;
-import static enums.FileExtension.JPG;
-import static enums.MetadataStatus.NOT_READABLE;
-import static utility.FileUtility.getExtension;
+import com.drew.imaging.ImageProcessingException;
+import enums.MetadataStatus;
+import exceptions.UnsupportDateFormatException;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import model.ExifInfo;
+import model.ImageFile;
+import model.exceptions.NoMetadataException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import utility.ExifInfoUtility;
+import utility.LocalDateTimeUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,20 +24,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import exceptions.UnsupportDateFormatException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.drew.imaging.ImageProcessingException;
-
-import enums.MetadataStatus;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import model.ExifInfo;
-import model.ImageFile;
-import model.exceptions.NoMetadataException;
-import utility.ExifInfoUtility;
-import utility.LocalDateTimeUtility;
+import static enums.ExifIFD0Info.*;
+import static enums.FileExtension.JPG;
+import static enums.MetadataStatus.NOT_READABLE;
+import static utility.FileUtility.getExtension;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {

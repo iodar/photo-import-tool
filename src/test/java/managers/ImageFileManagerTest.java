@@ -1,23 +1,18 @@
 package managers;
 
-import static enums.MetadataStatus.NOT_READABLE;
-import static enums.MetadataStatus.NO_DATA;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.util.List;
-
+import enums.MetadataStatus;
+import model.ImageFile;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import enums.MetadataStatus;
-import model.ImageFile;
+import java.io.File;
+import java.util.List;
+
+import static enums.MetadataStatus.NOT_READABLE;
+import static enums.MetadataStatus.NO_DATA;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 public class ImageFileManagerTest {
 

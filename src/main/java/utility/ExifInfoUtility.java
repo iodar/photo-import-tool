@@ -1,23 +1,21 @@
 package utility;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import exceptions.UnsupportDateFormatException;
-import org.apache.commons.lang3.StringUtils;
-
 import com.diffplug.common.base.Errors;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifIFD0Directory;
-
 import enums.MetadataDirectoryNames;
+import exceptions.UnsupportDateFormatException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.exceptions.NoMetadataException;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExifInfoUtility {

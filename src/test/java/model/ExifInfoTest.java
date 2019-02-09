@@ -1,11 +1,10 @@
 package model;
 
+import org.junit.Test;
+import utility.LocalDateTimeUtility;
+
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
-
-import org.junit.Test;
-
-import utility.LocalDateTimeUtility;
 
 public class ExifInfoTest {
 

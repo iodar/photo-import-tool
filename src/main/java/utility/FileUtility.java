@@ -1,12 +1,11 @@
 package utility;
 
-import java.io.File;
-
-import org.apache.commons.io.FilenameUtils;
-
 import enums.FileExtension;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.commons.io.FilenameUtils;
+
+import java.io.File;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileUtility {

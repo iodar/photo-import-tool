@@ -1,20 +1,16 @@
 package utility;
 
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.*;
+import com.drew.imaging.ImageProcessingException;
+import exceptions.UnsupportDateFormatException;
+import model.exceptions.NoMetadataException;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 
-import exceptions.UnsupportDateFormatException;
-import org.junit.Before;
-import org.junit.Test;
-
-import com.drew.imaging.ImageProcessingException;
-
-import model.exceptions.NoMetadataException;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 
 public class ExifInfoUtilityTest {
 

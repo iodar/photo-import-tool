@@ -1,17 +1,14 @@
 package utility;
 
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static utility.LocalDateTimeUtility.fromString;
+import org.hamcrest.Matchers;
+import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.hamcrest.Matchers;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static utility.LocalDateTimeUtility.fromString;
 
 public class LocalDateTimeUtilityTest {
 	
