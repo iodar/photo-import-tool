@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import exceptions.UnsupportDateFormatException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -88,11 +89,15 @@ public class ImageFileManager {
 			return new ImageFile().setFileName(file.getName()).setAbsoluteFilePath(file.getAbsolutePath())
 					.setMetadataStatus(MetadataStatus.NO_DATA).setExifInfo(null)
 					.setMetadataStatusDescription(noMetadataException.getMessage());
+		} catch (UnsupportDateFormatException e) {
+			logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, e.getClass().getName(), e.getMessage()));
+
+			return new ImageFile().setFileName(file.getName()).setAbsoluteFilePath(file.getAbsolutePath())
 		}
 	}
 
 	private static ExifInfo createExifInfo(File file)
-			throws ImageProcessingException, IOException, NoMetadataException {
+			throws ImageProcessingException, IOException, NoMetadataException, UnsupportDateFormatException {
 
 		Map<String, String> fileMetadata = ExifInfoUtility.getMetadata(file);
 		return new ExifInfo().setMake(fileMetadata.get(MAKE.toString())).setModel(fileMetadata.get(MODEL.toString()))
