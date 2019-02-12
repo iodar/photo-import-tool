@@ -20,7 +20,7 @@ import java.util.Map;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExifInfoUtility {
 
-    public static final String SUPPORTED_DATETIME_FORMAT = "[\\d]{4}[\\-]{1}[\\d]{2}[\\-]{1}[\\d]{2}[\\x20]{1}([\\d]{2}[:]{1}){2}[\\d]{2}";
+    public static final String SUPPORTED_DATETIME_FORMAT = "[\\d]{4}[:]{1}[\\d]{2}[:]{1}[\\d]{2}[\\x20]{1}([\\d]{2}[:]{1}){2}[\\d]{2}";
 
     /**
      * Reads metadata from the supplied file. Reads only the necessary metadata that
