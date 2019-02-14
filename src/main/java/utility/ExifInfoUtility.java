@@ -9,7 +9,7 @@ import enums.MetadataDirectoryNames;
 import exceptions.UnsupportDateFormatException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import model.exceptions.NoMetadataException;
+import exceptions.NoMetadataException;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -44,10 +44,10 @@ public class ExifInfoUtility {
         } else {
             metadata.getDirectories().forEach(dir -> dir.getTags().forEach(Errors.rethrow().wrap(tag -> {
                 if (dir.getName().equals(MetadataDirectoryNames.EXIF_INFO.toString())) {
-                    if (StringUtils.isBlank(tag.getDescription())) {
-                        throw new NoMetadataException(String.format("Metadata properties of file [%s] were empty", file.getName()));
-                    } else if (!tag.getDescription().matches(SUPPORTED_DATETIME_FORMAT)) {
+                    if (!tag.getDescription().matches(SUPPORTED_DATETIME_FORMAT)) {
                         throw new UnsupportDateFormatException("Supplied DateTime format is not supported");
+                    } else if (StringUtils.isBlank(tag.getDescription())) {
+                        throw new NoMetadataException(String.format("Metadata properties of file [%s] were empty", file.getName()));
                     } else {
                         metadataHashMap.put(tag.getTagName(), tag.getDescription());
                     }

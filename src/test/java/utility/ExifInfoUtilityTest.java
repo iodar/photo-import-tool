@@ -2,7 +2,7 @@ package utility;
 
 import com.drew.imaging.ImageProcessingException;
 import exceptions.UnsupportDateFormatException;
-import model.exceptions.NoMetadataException;
+import exceptions.NoMetadataException;
 import org.junit.Before;
 import org.junit.Test;
 

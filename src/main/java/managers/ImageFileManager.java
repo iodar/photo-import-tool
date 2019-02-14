@@ -7,7 +7,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.ExifInfo;
 import model.ImageFile;
-import model.exceptions.NoMetadataException;
+import exceptions.NoMetadataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utility.ExifInfoUtility;
@@ -83,16 +83,20 @@ public class ImageFileManager {
             logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, noMetadataException.getClass().getName(),
                     noMetadataException.getMessage()));
 
-            return new ImageFile().setFileName(file.getName()).setAbsoluteFilePath(file.getAbsolutePath())
-                    .setMetadataStatus(MetadataStatus.NO_DATA).setExifInfo(null)
+            return new ImageFile()
+                    .setFileName(file.getName())
+                    .setAbsoluteFilePath(file.getAbsolutePath())
+                    .setMetadataStatus(MetadataStatus.NO_DATA)
+                    .setExifInfo(null)
                     .setMetadataStatusDescription(noMetadataException.getMessage());
         } catch (UnsupportDateFormatException e) {
             logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, e.getClass().getName(), e.getMessage()));
 
-            return new ImageFile().setFileName(file.getName())//
+            return new ImageFile()
+                    .setFileName(file.getName())
                     .setAbsoluteFilePath(file.getAbsolutePath())
-                    .setFileName(null)
                     .setMetadataStatus(NOT_READABLE)
+                    .setExifInfo(null)
                     .setMetadataStatusDescription(e.getMessage());
         }
     }
