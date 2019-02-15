@@ -1,7 +1,7 @@
 package utility;
 
 import com.drew.imaging.ImageProcessingException;
-import exceptions.UnsupportDateFormatException;
+import exceptions.UnsupportedDateFormatException;
 import exceptions.NoMetadataException;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +25,7 @@ public class ExifInfoUtilityTest {
 	}
 
 	@Test
-	public void readingExifInfoOfNonPictureFile_shouldThrowException() throws ImageProcessingException, IOException, UnsupportDateFormatException {
+	public void readingExifInfoOfNonPictureFile_shouldThrowException() throws ImageProcessingException, IOException, UnsupportedDateFormatException {
 		ImageProcessingException actualException = null;
 		
 		try {

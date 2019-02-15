@@ -2,7 +2,7 @@ package managers;
 
 import com.drew.imaging.ImageProcessingException;
 import enums.MetadataStatus;
-import exceptions.UnsupportDateFormatException;
+import exceptions.UnsupportedDateFormatException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.ExifInfo;
@@ -89,7 +89,7 @@ public class ImageFileManager {
                     .setMetadataStatus(MetadataStatus.NO_DATA)
                     .setExifInfo(null)
                     .setMetadataStatusDescription(noMetadataException.getMessage());
-        } catch (UnsupportDateFormatException e) {
+        } catch (UnsupportedDateFormatException e) {
             logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, e.getClass().getName(), e.getMessage()));
 
             return new ImageFile()
@@ -102,7 +102,7 @@ public class ImageFileManager {
     }
 
     private static ExifInfo createExifInfo(File file)
-            throws ImageProcessingException, IOException, NoMetadataException, UnsupportDateFormatException {
+            throws ImageProcessingException, IOException, NoMetadataException, UnsupportedDateFormatException {
 
         Map<String, String> fileMetadata = ExifInfoUtility.getMetadata(file);
         return new ExifInfo().setMake(fileMetadata.get(MAKE.toString())).setModel(fileMetadata.get(MODEL.toString()))

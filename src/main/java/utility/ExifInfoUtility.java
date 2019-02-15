@@ -9,7 +9,7 @@ import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifIFD0Directory;
 import enums.ExifIFD0Info;
 import enums.MetadataDirectoryNames;
-import exceptions.UnsupportDateFormatException;
+import exceptions.UnsupportedDateFormatException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import exceptions.NoMetadataException;
@@ -37,13 +37,13 @@ public class ExifInfoUtility {
      * @throws IOException              Thrown when reading the file went wrong
      * @throws NoMetadataException
      */
-    public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException, UnsupportDateFormatException {
+    public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException, UnsupportedDateFormatException {
         Metadata metadata = ImageMetadataReader.readMetadata(file);
         HashMap<String, String> metadataHashMap = new HashMap<>();
 
         /*
         TODO: all this below needs refactoring
-        without check if tag is date time UnsupportDateFormatException is thrown
+        without check if tag is date time UnsupportedDateFormatException is thrown
         every time because anything else does not match the date pattern
         */
         if (!containsExifInfo(metadata)) {
@@ -54,7 +54,7 @@ public class ExifInfoUtility {
                 if (isExifInfoGroup(dir)) {
                     if (isDateTimeTag(tag)) {
                         if (!matchesSupportedDateFormat(tag)) {
-                            throw new UnsupportDateFormatException("Supplied DateTime format is not supported");
+                            throw new UnsupportedDateFormatException("Supplied DateTime format is not supported");
                         } else if (isBlank(tag)) {
                             throw new NoMetadataException(String.format("Metadata properties of file [%s] were empty", file.getName()));
                         } else {

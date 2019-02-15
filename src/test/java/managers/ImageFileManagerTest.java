@@ -81,8 +81,7 @@ public class ImageFileManagerTest {
         assertThat(actualImageFile.getMetadataStatusDescription(), is(expectedMetadataStatusDescription));
     }
 
-    // FIXME: this test needs to be fixed
-    @Ignore
+    @Ignore("Ignored because of different Exception on dos and linux")
     @Test
     public void createImageFileOfFileThatCanNotBeRead_shouldReturnImageFileWithMetadataStatusNoDataAndDesciption() {
         ImageFile actualImageFile = ImageFileManager.createImageFile(unreadableFile);
