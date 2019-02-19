@@ -2,6 +2,7 @@ package utility;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,8 +19,7 @@ public class LocalDateTimeUtility {
 	 * @param format       used to specify the format of the string representation
 	 *                     provided
 	 * @return {@link LocalDateTime} object of the provided string
-	 * @throws UnsupportedDateStringException
-	 * 
+	 *
 	 * @see LocalDateTime
 	 * @see DateTimeFormatter
 	 */
@@ -44,4 +44,11 @@ public class LocalDateTimeUtility {
 		return dateTime.format(formatter);
 	}
 
+    public static LocalDateTime getLocalDateFromStringWithExifFormat(String dateTimeAsString) {
+        if (StringUtils.isBlank(dateTimeAsString) || StringUtils.isEmpty(dateTimeAsString)) {
+        	return null;
+		} else {
+			return fromString(dateTimeAsString, "yyyy:MM:dd HH:mm:ss");
+		}
+    }
 }

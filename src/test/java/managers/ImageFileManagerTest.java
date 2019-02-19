@@ -39,7 +39,7 @@ public class ImageFileManagerTest {
 
         assertThat(image.getFileName(), equalTo("DSC_0001.JPG"));
         assertThat(image.getAbsoluteFilePath(), equalTo(picture.getAbsolutePath()));
-        // contents already tested
+        assertThat(image.getMetadataStatus(), is(MetadataStatus.OK));
         assertThat(image.getExifInfo(), notNullValue());
     }
 
@@ -81,9 +81,9 @@ public class ImageFileManagerTest {
         assertThat(actualImageFile.getMetadataStatusDescription(), is(expectedMetadataStatusDescription));
     }
 
-    @Ignore("Ignored because of different Exception on dos and linux")
+    @Ignore("Ignored because of different Exceptions on dos and linux")
     @Test
-    public void createImageFileOfFileThatCanNotBeRead_shouldReturnImageFileWithMetadataStatusNoDataAndDesciption() {
+    public void createImageFileOfFileThatCanNotBeRead_shouldReturnImageFileWithMetadataStatusNoDataAndDescription() {
         ImageFile actualImageFile = ImageFileManager.createImageFile(unreadableFile);
         System.out.println(actualImageFile.getMetadataStatusDescription());
 

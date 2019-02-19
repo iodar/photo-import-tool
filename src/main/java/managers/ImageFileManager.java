@@ -11,18 +11,14 @@ import exceptions.NoMetadataException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import utility.ExifInfoUtility;
+import utility.FileUtility;
 import utility.LocalDateTimeUtility;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static enums.ExifIFD0Info.*;
 import static enums.FileExtension.JPG;
@@ -37,7 +33,7 @@ public class ImageFileManager {
 
     public static List<ImageFile> createImagesFromDirectory(File directory) throws IOException {
         // get files
-        List<File> files = getFilesOfDirectory(directory);
+        List<File> files = FileUtility.getFilesOfDirectory(directory);
         // creates a list of ImageFiles from a single directory
         List<ImageFile> images = new ArrayList<>();
 
@@ -49,16 +45,6 @@ public class ImageFileManager {
         });
 
         return images;
-    }
-
-    private static List<File> getFilesOfDirectory(File directory) throws IOException {
-        List<File> files;
-
-        try (Stream<Path> pathStream = Files.walk(directory.toPath())) {
-            files = pathStream.map(Path::toFile).collect(Collectors.toList());
-        }
-
-        return files;
     }
 
     public static ImageFile createImageFile(File file) {
@@ -107,10 +93,7 @@ public class ImageFileManager {
         Map<String, String> fileMetadata = ExifInfoUtility.getMetadata(file);
         return new ExifInfo().setMake(fileMetadata.get(MAKE.toString())).setModel(fileMetadata.get(MODEL.toString()))
                 .setDateTime(
-                        ImageFileManager.getLocalDateFromStringWithExifFormat(fileMetadata.get(DATE_TIME.toString())));
+                        LocalDateTimeUtility.getLocalDateFromStringWithExifFormat(fileMetadata.get(DATE_TIME.toString())));
     }
 
-    private static LocalDateTime getLocalDateFromStringWithExifFormat(String dateTimeAsString) {
-        return LocalDateTimeUtility.fromString(dateTimeAsString, "yyyy:MM:dd HH:mm:ss");
-    }
 }

@@ -19,7 +19,8 @@ import java.util.List;
 public class Main {
 
 	private static Logger logger = LogManager.getLogger(Main.class);
-	private static File rootDir = new File("N:\\Fotos\\Fotos Dario");
+	//private static File rootDir = new File("N:\\Fotos\\Fotos Dario");
+	private static File rootDir = new File("D:\\040_Bilder\\Bilder_final\\2018_Rocco_und_Heike");
 
 	public static void main(String[] args) throws ImageProcessingException, IOException {
 		dirtyTestApp();

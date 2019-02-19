@@ -20,6 +20,7 @@ public class ExifInfo {
 	private String model;
 	private LocalDateTime dateTime;
 
+	@Override
 	public String toString() {
 		return String.format("Make: %s, Model: %s, dateTime: %s", getMake(), getModel(),
 				LocalDateTimeUtility.fromLocalDate(getDateTime(), "uuuu-MM-dd HH:mm:ss"));

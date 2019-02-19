@@ -88,5 +88,4 @@ public class ExifInfoUtility {
         return tag.getDescription().matches(SUPPORTED_DATETIME_FORMAT);
     }
 
-
 }
