@@ -35,7 +35,8 @@ public class ExifInfoUtility {
      *                                  of exif info is performed is not a image
      *                                  file
      * @throws IOException              Thrown when reading the file went wrong
-     * @throws NoMetadataException
+     * @throws NoMetadataException      Thrown when the there is no exif info the be extracted
+     *                                  from the image file
      */
     public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException {
         Metadata metadata = ImageMetadataReader.readMetadata(file);
