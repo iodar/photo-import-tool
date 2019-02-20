@@ -37,7 +37,7 @@ public class ExifInfoUtility {
      * @throws IOException              Thrown when reading the file went wrong
      * @throws NoMetadataException
      */
-    public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException, UnsupportedDateFormatException {
+    public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException {
         Metadata metadata = ImageMetadataReader.readMetadata(file);
         HashMap<String, String> metadataHashMap = new HashMap<>();
 
