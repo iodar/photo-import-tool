@@ -1,9 +1,10 @@
-package model;
+package model.dto;
 
 import lombok.Data;
 import lombok.Generated;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import model.ExifInfo;
 import utility.LocalDateTimeUtility;
 
 import java.time.LocalDateTime;

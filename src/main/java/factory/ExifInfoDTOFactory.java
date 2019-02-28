@@ -4,7 +4,7 @@ import com.drew.metadata.Directory;
 import enums.ExifIFD0Info;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import model.ExifInfoDTO;
+import model.dto.ExifInfoDTO;
 
 @Data
 @Accessors(chain = true)
