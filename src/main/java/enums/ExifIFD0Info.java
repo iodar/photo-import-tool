@@ -21,4 +21,5 @@ public enum ExifIFD0Info {
 	public String toString() {
 		return this.exifInfoTagName;
 	}
+
 }

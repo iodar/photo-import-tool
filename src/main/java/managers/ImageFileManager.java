@@ -25,7 +25,9 @@ import static enums.ExifIFD0Info.*;
 import static enums.FileExtension.JPG;
 import static enums.MetadataStatus.NOT_READABLE;
 import static enums.MetadataStatus.OK;
+import static utility.ExifInfoUtility.getMetadata;
 import static utility.FileUtility.getExtension;
+import static utility.LocalDateTimeUtility.getLocalDateFromStringWithExifFormat;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {
@@ -82,10 +84,11 @@ public class ImageFileManager {
     private static ExifInfo createExifInfo(File file)
             throws ImageProcessingException, IOException, NoMetadataException, UnsupportedDateFormatException {
 
-        Map<String, String> fileMetadata = ExifInfoUtility.getMetadata(file);
-        return new ExifInfo().setMake(fileMetadata.get(MAKE.toString())).setModel(fileMetadata.get(MODEL.toString()))
-                .setDateTime(
-                        LocalDateTimeUtility.getLocalDateFromStringWithExifFormat(fileMetadata.get(DATE_TIME.toString())));
+        Map<String, String> fileMetadata = getMetadata(file);
+        return new ExifInfo()
+                .setMake(fileMetadata.get(MAKE.toString()))
+                .setModel(fileMetadata.get(MODEL.toString()))
+                .setDateTime(getLocalDateFromStringWithExifFormat(fileMetadata.get(DATE_TIME.toString())));
     }
 
 }

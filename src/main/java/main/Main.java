@@ -2,6 +2,7 @@ package main;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import managers.ImageFileManager;
 import model.ImageFile;
@@ -23,8 +24,12 @@ public class Main {
 	private static File rootDir = new File("D:\\040_Bilder\\Bilder_final\\2018_Rocco_und_Heike");
 
 	public static void main(String[] args) throws ImageProcessingException, IOException {
-		dirtyTestApp();
+		//dirtyTestApp();
 //		testMetadataReader();
+		Metadata metadata = ImageMetadataReader.readMetadata(new File("src/test/data/DSC_0001.JPG"));
+
+		metadata.getDirectories().forEach(directory -> directory.getTags().forEach(tag -> System.out.println("[" + directory.getName() + "] [" + tag.getTagName() + "] " + tag.getDescription())));
+
 	}
 
 	private static void dirtyTestApp() {

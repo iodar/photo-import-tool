@@ -23,13 +23,13 @@ import java.util.Map;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExifInfoUtility {
 
-    public static final String SUPPORTED_DATETIME_FORMAT = "[\\d]{4}[:]{1}[\\d]{2}[:]{1}[\\d]{2}[\\x20]{1}([\\d]{2}[:]{1}){2}[\\d]{2}";
+    public static final String SUPPORTED_DATETIME_FORMAT = "[\\d]{4}[:][\\d]{2}[:][\\d]{2}[\\x20]([\\d]{2}[:]){2}[\\d]{2}";
 
     /**
      * Reads metadata from the supplied file. Reads only the necessary metadata that
      * is needed to sort all files by date.
      *
-     * @param file File of which the metadata is read
+     * @param file File of which the metadata is reads
      * @return Metadata of file as HashMap
      * @throws ImageProcessingException Thrown if the file on which the extraction
      *                                  of exif info is performed is not a image
@@ -39,7 +39,9 @@ public class ExifInfoUtility {
      *                                  from the image file
      */
     public static Map<String, String> getMetadata(File file) throws ImageProcessingException, IOException, NoMetadataException {
+        // read metadata into var
         Metadata metadata = ImageMetadataReader.readMetadata(file);
+        // create hashmap to return data
         HashMap<String, String> metadataHashMap = new HashMap<>();
 
         /*
