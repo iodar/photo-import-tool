@@ -2,11 +2,9 @@ package factory;
 
 import com.drew.metadata.Directory;
 import enums.ExifIFD0Info;
-import lombok.Data;
 import lombok.experimental.Accessors;
 import model.dto.ExifInfoDTO;
 
-@Data
 @Accessors(chain = true)
 public class ExifInfoDTOFactory {
     public static ExifInfoDTO createDtoFromExifInfoDirectoy(Directory directory) {
@@ -24,10 +22,12 @@ public class ExifInfoDTOFactory {
                 case MODEL:
                     exifInfoDTO.setModel(tag.getDescription());
                     break;
+                default:
+                    break;
             }
         });
 
-        return  exifInfoDTO;
+        return exifInfoDTO;
     }
 
     private static ExifIFD0Info getValueOfString(String value) {
