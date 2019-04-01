@@ -2,13 +2,10 @@ package controller.converter;
 
 import model.ExifInfo;
 import model.dto.ExifInfoDTO;
-import org.hamcrest.Matchers;
 import org.junit.Test;
-import utility.LocalDateTimeUtility;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.assertThat;
 import static utility.LocalDateTimeUtility.fromString;
 
 public class ExifInfoConverterTest {
@@ -22,9 +19,9 @@ public class ExifInfoConverterTest {
 
         final ExifInfo exifInfo = ExifInfoConverter.convertToExifInfo(dto);
 
-        assertThat(exifInfo.getMake(), is(equalTo(dto.getMake())));
-        assertThat(exifInfo.getModel(), is(equalTo(dto.getModel())));
-        assertThat(exifInfo.getDateTime(),
-                is(equalTo(fromString(dto.getDateTime(), "uuuu:MM:dd HH:mm:ss"))));
+        assertThat(exifInfo, allOf(hasProperty("make", is(equalTo(dto.getMake()))),
+                hasProperty("model", is(equalTo(dto.getModel()))),
+                hasProperty("dateTime", is(equalTo(fromString(dto.getDateTime(), "uuuu:MM:dd HH:mm:ss"))))));
+
     }
 }

@@ -1,33 +1,28 @@
 package managers;
 
 import com.drew.imaging.ImageProcessingException;
-import enums.MetadataStatus;
+import exceptions.NoMetadataException;
 import exceptions.UnsupportedDateFormatException;
 import factory.ImageFileFactory;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import model.ExifInfo;
 import model.ImageFile;
-import exceptions.NoMetadataException;
+import model.dto.ExifInfoDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import utility.ExifInfoUtility;
 import utility.FileUtility;
-import utility.LocalDateTimeUtility;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import static enums.ExifIFD0Info.*;
+import static controller.converter.ExifInfoConverter.convertToExifInfo;
 import static enums.FileExtension.JPG;
-import static enums.MetadataStatus.NOT_READABLE;
 import static enums.MetadataStatus.OK;
 import static utility.ExifInfoUtility.getMetadata;
 import static utility.FileUtility.getExtension;
-import static utility.LocalDateTimeUtility.getLocalDateFromStringWithExifFormat;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {
@@ -84,11 +79,8 @@ public class ImageFileManager {
     private static ExifInfo createExifInfo(File file)
             throws ImageProcessingException, IOException, NoMetadataException, UnsupportedDateFormatException {
 
-        Map<String, String> fileMetadata = getMetadata(file);
-        return new ExifInfo()
-                .setMake(fileMetadata.get(MAKE.toString()))
-                .setModel(fileMetadata.get(MODEL.toString()))
-                .setDateTime(getLocalDateFromStringWithExifFormat(fileMetadata.get(DATE_TIME.toString())));
+        final ExifInfoDTO exifInfoDTO = getMetadata(file);
+        return convertToExifInfo(exifInfoDTO);
     }
 
 }
