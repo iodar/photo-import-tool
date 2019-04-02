@@ -1,6 +1,7 @@
 package managers;
 
 import com.drew.imaging.ImageProcessingException;
+import controller.converter.ExifInfoConverter;
 import exceptions.NoMetadataException;
 import exceptions.UnsupportedDateFormatException;
 import factory.ImageFileFactory;
@@ -17,12 +18,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import static controller.converter.ExifInfoConverter.convertToExifInfo;
+import static enums.ExifIFD0Info.*;
 import static enums.FileExtension.JPG;
 import static enums.MetadataStatus.OK;
 import static utility.ExifInfoUtility.getMetadata;
 import static utility.FileUtility.getExtension;
+import static utility.LocalDateTimeUtility.getLocalDateFromStringWithExifFormat;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {
@@ -80,7 +83,7 @@ public class ImageFileManager {
             throws ImageProcessingException, IOException, NoMetadataException, UnsupportedDateFormatException {
 
         final ExifInfoDTO exifInfoDTO = getMetadata(file);
-        return convertToExifInfo(exifInfoDTO);
+        return ExifInfoConverter.convertToExifInfo(exifInfoDTO);
     }
 
 }
