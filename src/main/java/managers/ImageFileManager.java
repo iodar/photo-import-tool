@@ -18,14 +18,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import static enums.ExifIFD0Info.*;
 import static enums.FileExtension.JPG;
 import static enums.MetadataStatus.OK;
 import static utility.ExifInfoUtility.getMetadata;
 import static utility.FileUtility.getExtension;
-import static utility.LocalDateTimeUtility.getLocalDateFromStringWithExifFormat;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ImageFileManager {
@@ -65,16 +62,10 @@ public class ImageFileManager {
 
             return ImageFileFactory.createImageFileWithNotReadableMetadataStatus(file.getName(), file.getAbsolutePath(),
                     ioException.getMessage());
-        } catch (NoMetadataException noMetadataException) {
-            logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, noMetadataException.getClass().getName(),
-                    noMetadataException.getMessage()));
-
+        } catch (NoMetadataException | UnsupportedDateFormatException e) {
+            logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, e.getClass().getName(),
+                    e.getMessage()));
             return ImageFileFactory.createImageFileWithNoMetadataStatus(file.getName(), file.getAbsolutePath(),
-                    noMetadataException.getMessage());
-        } catch (UnsupportedDateFormatException e) {
-            logger.error(String.format(EXCEPTION_MESSAGE_FORMAT, e.getClass().getName(), e.getMessage()));
-
-            return ImageFileFactory.createImageFileWithNotReadableMetadataStatus(file.getName(), file.getAbsolutePath(),
                     e.getMessage());
         }
     }
